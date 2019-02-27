@@ -5,10 +5,12 @@
  */
 package com.mycompany.incidenciasdb.DAO;
 
+
 import java.util.List;
 import com.mycompany.incidenciasdb.model.Empleado;
 import com.mycompany.incidenciasdb.model.Evento;
 import com.mycompany.incidenciasdb.model.Incidencia;
+import com.mycompany.incidenciasdb.model.RankingTO;
 
 
 public  interface DAOInterface {

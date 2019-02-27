@@ -9,9 +9,6 @@ package com.mycompany.incidenciasdb.model;
  *
  * @author CRISTIAN
  */
-public class Empleado {
-    
-    
-    
+public class RankingTO {
     
 }
