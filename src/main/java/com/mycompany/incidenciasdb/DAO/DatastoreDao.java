@@ -7,14 +7,16 @@ package com.mycompany.incidenciasdb.DAO;
 
 import com.google.cloud.datastore.Datastore;
 import com.google.cloud.datastore.DatastoreOptions;
+import com.google.cloud.datastore.Entity;
+import com.google.cloud.datastore.FullEntity;
+import com.google.cloud.datastore.IncompleteKey;
 import com.google.cloud.datastore.KeyFactory;
 import com.mycompany.incidenciasdb.model.Empleado;
 import com.mycompany.incidenciasdb.model.Evento;
 import com.mycompany.incidenciasdb.model.Incidencia;
 import com.mycompany.incidenciasdb.model.RankingTO;
+import java.awt.print.Book;
 import java.util.List;
-
-
 
 /**
  *
@@ -36,7 +38,17 @@ public class DatastoreDao implements DAOInterface {
 
     @Override
     public void insertEmpleado(Empleado e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
+        
+       IncompleteKey key = keyFactory.newKey();          // Key will be assigned once written
+       FullEntity<IncompleteKey> Empleado = Entity.newBuilder(key)  // Create the Entity
+      .set(Book.AUTHOR, book.getAuthor())           // Add Property ("author", book.getAuthor())
+      .set(Empleado.NOMBRE, e.getNombre())
+      .set(Empleado.PUBLISHED_DATE, Empleado.getPublishedDate())
+      .set(Empleado.TITLE, Empleado.getTitle())
+      .build();
+  Entity bookEntity = datastore.add(incBookEntity); // Save the Entity  
+        
     }
 
     @Override
