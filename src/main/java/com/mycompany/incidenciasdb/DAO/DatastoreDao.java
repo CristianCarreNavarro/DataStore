@@ -30,24 +30,38 @@ public class DatastoreDao implements DAOInterface {
   private KeyFactory keyFactory;
 
   
+  
   public DatastoreDao() {
     datastore = DatastoreOptions.getDefaultInstance().getService(); // Authorized Datastore service
-    keyFactory = datastore.newKeyFactory().setKind("Book2");      // Is used for creating keys later
+    keyFactory = datastore.newKeyFactory().setKind("Empleado");      // Is used for creating keys later
   
   }
 
+  
+ 
+  public Empleado entityToEmpleado(Entity entity) {
+      
+    String nombre=entity.getString(Empleado.NOMBRE);
+    String pass=entity.getString(Empleado.PASS);
+    int edad=Integer.parseInt(entity.getString(Empleado.EDAD));
+    String eventos=entity.getString(Empleado.EVENTOS);
+
+    Empleado empleado1 = new Empleado(edad, nombre, pass, edad, eventos);
+
+      return  empleado1;                              
+  }
+  
     @Override
     public void insertEmpleado(Empleado e) {
        
-        
        IncompleteKey key = keyFactory.newKey();          // Key will be assigned once written
-       FullEntity<IncompleteKey> Empleado = Entity.newBuilder(key)  // Create the Entity
-      .set(Book.AUTHOR, book.getAuthor())           // Add Property ("author", book.getAuthor())
-      .set(Empleado.NOMBRE, e.getNombre())
-      .set(Empleado.PUBLISHED_DATE, Empleado.getPublishedDate())
-      .set(Empleado.TITLE, Empleado.getTitle())
+       FullEntity<IncompleteKey> EmpleadoEntity = Entity.newBuilder(key)  // Create the Entity
+      .set(Empleado.NOMBRE, e.getNombre())           // Add Property ("author", book.getAuthor())
+      .set(Empleado.PASS, e.getPass())
+      .set(Empleado.EDAD, e.getEdad())
+      .set(Empleado.EVENTOS, e.getEventos())
       .build();
-  Entity bookEntity = datastore.add(incBookEntity); // Save the Entity  
+  Entity entity1 = datastore.add(EmpleadoEntity); // Save the Entity  
         
     }
 
