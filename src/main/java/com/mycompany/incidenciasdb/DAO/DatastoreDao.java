@@ -15,7 +15,7 @@ import com.mycompany.incidenciasdb.model.Empleado;
 import com.mycompany.incidenciasdb.model.Evento;
 import com.mycompany.incidenciasdb.model.Incidencia;
 import com.mycompany.incidenciasdb.model.RankingTO;
-import java.awt.print.Book;
+
 import java.util.List;
 
 /**
@@ -46,7 +46,7 @@ public class DatastoreDao implements DAOInterface {
     int edad=Integer.parseInt(entity.getString(Empleado.EDAD));
     String eventos=entity.getString(Empleado.EVENTOS);
 
-    Empleado empleado1 = new Empleado(edad, nombre, pass, edad, eventos);
+    Empleado empleado1 = new Empleado( nombre, pass, edad, eventos);
 
       return  empleado1;                              
   }

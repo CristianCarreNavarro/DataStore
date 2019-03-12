@@ -6,6 +6,8 @@
 package com.mycompany.incidenciasdb;
 
 import com.google.cloud.datastore.Datastore;
+import com.mycompany.incidenciasdb.DAO.DatastoreDao;
+import com.mycompany.incidenciasdb.model.Empleado;
 
 
 
@@ -21,6 +23,13 @@ public class Main {
     public static void main(String[] args) {
         Datastore datastore;
         
+            Empleado empleado1 = new Empleado("Pepe", "12345", 25, "evento1");
+        
+        DatastoreDao datastoreDao = new DatastoreDao();
+        
+        datastoreDao.insertEmpleado(empleado1);
+        
+        datastoreDao.entityToEmpleado(entity);
     }
     
 }

@@ -11,20 +11,25 @@ package com.mycompany.incidenciasdb.model;
  */
 public class Empleado {
     
-     private Integer id;
+    private Integer id;
     private String nombre;
     private String pass;
     private int edad;
-        private String eventos;
+    private String eventos;
     
-    
-    
+    //ENTER KEYS
+  public static final String NOMBRE = "nombre";
+  public static final String PASS = "pass";
+  public static final String EDAD = "edad";
+    public static final String EVENTOS = "eventos";
+    //FINAL KEYS
     
      public Empleado() {
     }
 
-    public Empleado(Integer id, String nombre, String pass, int edad, String eventos) {
-        this.id = id;
+
+    public Empleado( String nombre, String pass, int edad, String eventos) {
+ 
         this.nombre = nombre;
         this.pass = pass;
         this.edad = edad;
