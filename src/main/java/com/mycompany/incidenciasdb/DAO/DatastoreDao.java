@@ -10,6 +10,7 @@ import com.google.cloud.datastore.DatastoreOptions;
 import com.google.cloud.datastore.Entity;
 import com.google.cloud.datastore.FullEntity;
 import com.google.cloud.datastore.IncompleteKey;
+import com.google.cloud.datastore.Key;
 import com.google.cloud.datastore.KeyFactory;
 import com.mycompany.incidenciasdb.model.Empleado;
 import com.mycompany.incidenciasdb.model.Evento;
@@ -33,6 +34,9 @@ public class DatastoreDao implements DAOInterface {
   
   public DatastoreDao() {
     datastore = DatastoreOptions.getDefaultInstance().getService(); // Authorized Datastore service
+    
+    //poner el id del dataStore
+    
     keyFactory = datastore.newKeyFactory().setKind("Empleado");      // Is used for creating keys later
   
   }
@@ -51,8 +55,8 @@ public class DatastoreDao implements DAOInterface {
       return  empleado1;                              
   }
   
-    @Override
-    public void insertEmpleado(Empleado e) {
+  @Override
+    public Long insertEmpleado(Empleado e) {
        
        IncompleteKey key = keyFactory.newKey();          // Key will be assigned once written
        FullEntity<IncompleteKey> EmpleadoEntity = Entity.newBuilder(key)  // Create the Entity
@@ -61,10 +65,26 @@ public class DatastoreDao implements DAOInterface {
       .set(Empleado.EDAD, e.getEdad())
       .set(Empleado.EVENTOS, e.getEventos())
       .build();
-  Entity entity1 = datastore.add(EmpleadoEntity); // Save the Entity  
-        
+       
+       Entity empleado = datastore.add(EmpleadoEntity);
+       return empleado.getKey().getId();
     }
-
+    
+    
+    
+    public Empleado getEmpleado(String nombre){
+        
+        Key key = KeyFactory.createKey("Empleado",user_name);
+        
+    Entity entity1 = datastore.get(keyFactory.newKey(nombre));
+    return entityToEmpleado(entity1);
+    }
+//    
+//    public Empleado getEmpleado(String nombre){
+//    Entity entity1 = datastore.get(keyFactory.newKey(nombre));
+//    return entityToEmpleado(entity1);
+//    }
+    
     @Override
     public boolean loginEmpleado(String user, String pass) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

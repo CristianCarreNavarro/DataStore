@@ -11,7 +11,7 @@ package com.mycompany.incidenciasdb.model;
  */
 public class Empleado {
     
-    private Integer id;
+    private Long id;
     private String nombre;
     private String pass;
     private int edad;
@@ -21,7 +21,7 @@ public class Empleado {
   public static final String NOMBRE = "nombre";
   public static final String PASS = "pass";
   public static final String EDAD = "edad";
-    public static final String EVENTOS = "eventos";
+  public static final String EVENTOS = "eventos";
     //FINAL KEYS
     
      public Empleado() {
@@ -36,11 +36,12 @@ public class Empleado {
         this.eventos = eventos;
     }
 
-    public Integer getId() {
+    
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

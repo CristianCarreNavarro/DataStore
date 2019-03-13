@@ -17,7 +17,7 @@ public  interface DAOInterface {
 
 
     // Método para insertar un nuevo empleado.
-    public void insertEmpleado(Empleado e);
+    public Long insertEmpleado(Empleado e);
 
     // Método para validar el login de un empleado.
     public boolean loginEmpleado(String user, String pass);

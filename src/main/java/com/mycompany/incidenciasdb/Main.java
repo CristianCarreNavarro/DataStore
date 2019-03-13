@@ -23,13 +23,16 @@ public class Main {
     public static void main(String[] args) {
         Datastore datastore;
         
-            Empleado empleado1 = new Empleado("Pepe", "12345", 25, "evento1");
+        Empleado empleado1 = new Empleado("Puyol", "12345", 79, "evento1");
         
         DatastoreDao datastoreDao = new DatastoreDao();
         
+        
         datastoreDao.insertEmpleado(empleado1);
         
-        datastoreDao.entityToEmpleado(entity);
+        Empleado e = datastoreDao.getEmpleado(empleado1.getNombre());
+        System.out.println("nombre empleado="+ e.getNombre());
+       // datastoreDao.entityToEmpleado(entity);
     }
     
 }
