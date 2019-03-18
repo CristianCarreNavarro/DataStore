@@ -23,7 +23,7 @@ public class Main {
     public static void main(String[] args) {
         Datastore datastore;
         
-        Empleado empleado1 = new Empleado("Puyol", "12345", 79, "evento1");
+        Empleado empleado1 = new Empleado("Victor", "12345", 19);
         
         DatastoreDao datastoreDao = new DatastoreDao();
         
@@ -31,8 +31,11 @@ public class Main {
         datastoreDao.insertEmpleado(empleado1);
         
         Empleado e = datastoreDao.getEmpleado(empleado1.getNombre());
-        System.out.println("nombre empleado="+ e.getNombre());
+//        System.out.println("nombre empleado="+ e.getNombre());
        // datastoreDao.entityToEmpleado(entity);
     }
+    
+    //CONSULTAR SI EXISTE ANTES EL USERNAME Y A TRAVÉS DE JAVA Y SI EXISTE NO PERMITIRLE DARLE DE ALTA
+    //CONSULTA MEDIANTE QUERY CON FILTROS
     
 }

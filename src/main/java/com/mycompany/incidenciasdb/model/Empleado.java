@@ -15,25 +15,25 @@ public class Empleado {
     private String nombre;
     private String pass;
     private int edad;
-    private String eventos;
+
     
     //ENTER KEYS
   public static final String NOMBRE = "nombre";
   public static final String PASS = "pass";
   public static final String EDAD = "edad";
-  public static final String EVENTOS = "eventos";
+
     //FINAL KEYS
     
      public Empleado() {
     }
 
 
-    public Empleado( String nombre, String pass, int edad, String eventos) {
+    public Empleado( String nombre, String pass, int edad) {
  
         this.nombre = nombre;
         this.pass = pass;
         this.edad = edad;
-        this.eventos = eventos;
+     
     }
 
     
@@ -69,13 +69,7 @@ public class Empleado {
         this.edad = edad;
     }
 
-    public String getEventos() {
-        return eventos;
-    }
 
-    public void setEventos(String eventos) {
-        this.eventos = eventos;
-    }
 
     
     

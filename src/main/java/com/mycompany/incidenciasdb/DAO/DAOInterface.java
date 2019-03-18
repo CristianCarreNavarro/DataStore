@@ -26,7 +26,7 @@ public  interface DAOInterface {
     public void updateEmpleado(Empleado e);
 
     // Método para eliminar un empleado.
-//    public void removeEmpleado(Empleado e);
+     public void removeEmpleado(Empleado e);
 
     // Obtener una Incidencia a partir de su Id.
     public Incidencia getIncidenciaById(int id);
