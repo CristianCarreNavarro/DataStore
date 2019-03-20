@@ -48,14 +48,15 @@ public class DatastoreDao implements DAOInterface {
 
         String nombre = entity.getString(Empleado.NOMBRE);
         String pass = entity.getString(Empleado.PASS);
-        int edad = Integer.parseInt(entity.getString(Empleado.EDAD));
- 
+        Long edad = entity.getLong(Empleado.EDAD);
 
         Empleado empleado1 = new Empleado(nombre, pass, edad);
 
         return empleado1;
     }
 
+    //NO PUEDE modificar SU NOMBRE 
+    //BORRAR Y UPDATE
     @Override
     public Long insertEmpleado(Empleado e) {
 
@@ -66,39 +67,64 @@ public class DatastoreDao implements DAOInterface {
                 .set(Empleado.EDAD, e.getEdad())
                 .build();
 
-        Entity empleado = datastore.add(EmpleadoEntity);
+        //Entity empleado = datastore.add(EmpleadoEntity);
+        Entity empleado = datastore.put(EmpleadoEntity);
+        //  datastore.put(empleado);
+
         return empleado.getKey().getId();
     }
 
     public Empleado getEmpleado(String nombre) {
 
-//        Filter filtro = new FilterPredicate("nombre", FilterOperator.EQUAL, nombre);
-//        Query q = new Query("Empleado").setFilter(filtro);
-        Query<Entity> q = Query.newGqlQueryBuilder(Query.ResultType.ENTITY, "select * from Empleado").build();
+        Query<Entity> q = Query.newGqlQueryBuilder(Query.ResultType.ENTITY, "select * from Empleado where nombre=@nombre")
+                .setBinding("nombre", nombre)
+                .build();
         QueryResults<Entity> results = datastore.run(q);
         while (results.hasNext()) {
             Entity entity = results.next();
-            System.out.println(entity);
-//           Empleado e = entityToEmpleado(entity);
-//            System.out.println(e);
+       
+        Empleado empleado1 = entityToEmpleado(entity);
+            System.out.println(empleado1);
+            return empleado1;
         }
-
         return null;
     }
-//    
-//    public Empleado getEmpleado(String nombre){
-//    Entity entity1 = datastore.get(keyFactory.newKey(nombre));
-//    return entityToEmpleado(entity1);
-//    }
+
+    @Override
+    public void updateEmpleado(Empleado e, Long campo1, String campo2) {
+    
+        removeEmpleado(e);
+        Empleado empleado1 = new Empleado(e.getNombre(), campo2, campo1);
+        insertEmpleado(empleado1);
+ 
+    }
 
     @Override
     public boolean loginEmpleado(String user, String pass) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Query<Entity> q = Query.newGqlQueryBuilder(Query.ResultType.ENTITY, "select * from Empleado where nombre='" + user + "' and pass='" + pass + "'").build();
+        QueryResults<Entity> results = datastore.run(q);
+        while (results != null) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public void updateEmpleado(Empleado e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean removeEmpleado(Empleado e) {
+        Query<Entity> q = Query.newGqlQueryBuilder(Query.ResultType.ENTITY, "select * from Empleado where nombre=@nombre and pass=@pass")
+                .setBinding("nombre", e.getNombre())
+                .setBinding("pass",e.getPass())
+                .build();
+        QueryResults<Entity> results = datastore.run(q);
+
+        if (results != null) {
+            Entity entidadUser = results.next();
+            datastore.delete(entidadUser.getKey());
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
     @Override

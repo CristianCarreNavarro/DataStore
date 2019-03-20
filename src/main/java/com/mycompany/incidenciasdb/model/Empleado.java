@@ -14,7 +14,7 @@ public class Empleado {
     private Long id;
     private String nombre;
     private String pass;
-    private int edad;
+    private Long edad;
 
     
     //ENTER KEYS
@@ -28,7 +28,7 @@ public class Empleado {
     }
 
 
-    public Empleado( String nombre, String pass, int edad) {
+    public Empleado( String nombre, String pass, Long edad) {
  
         this.nombre = nombre;
         this.pass = pass;
@@ -61,11 +61,11 @@ public class Empleado {
         this.pass = pass;
     }
 
-    public int getEdad() {
+    public Long getEdad() {
         return edad;
     }
 
-    public void setEdad(int edad) {
+    public void setEdad(Long edad) {
         this.edad = edad;
     }
 

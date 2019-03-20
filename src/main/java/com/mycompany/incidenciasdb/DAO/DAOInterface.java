@@ -23,10 +23,10 @@ public  interface DAOInterface {
     public boolean loginEmpleado(String user, String pass);
 
     // Método para modificar el perfil de un empleado.
-    public void updateEmpleado(Empleado e);
+    public void updateEmpleado(Empleado e,Long campo1,String campo2);
 
     // Método para eliminar un empleado.
-     public void removeEmpleado(Empleado e);
+     public boolean removeEmpleado(Empleado e);
 
     // Obtener una Incidencia a partir de su Id.
     public Incidencia getIncidenciaById(int id);

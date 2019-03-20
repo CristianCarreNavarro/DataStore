@@ -22,15 +22,23 @@ public class Main {
      */
     public static void main(String[] args) {
         Datastore datastore;
+        int edad = 14;
+        Long edadLong = new Long(edad);
         
-        Empleado empleado1 = new Empleado("Victor", "12345", 19);
+        Empleado empleado1 = new Empleado("Javi", "12345", edadLong);
         
         DatastoreDao datastoreDao = new DatastoreDao();
         
         
-        datastoreDao.insertEmpleado(empleado1);
+        //datastoreDao.insertEmpleado(empleado1);
         
         Empleado e = datastoreDao.getEmpleado(empleado1.getNombre());
+  
+        datastoreDao.updateEmpleado(e, edadLong, "234567");
+       
+         //datastoreDao.removeEmpleado(e);
+         
+         
 //        System.out.println("nombre empleado="+ e.getNombre());
        // datastoreDao.entityToEmpleado(entity);
     }
