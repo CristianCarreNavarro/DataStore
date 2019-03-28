@@ -5,38 +5,36 @@
  */
 package com.mycompany.incidenciasdb.model;
 
+import com.google.cloud.datastore.Key;
+
 /**
  *
  * @author CRISTIAN
  */
 public class Empleado {
-    
+
     private Long id;
     private String nombre;
     private String pass;
     private Long edad;
 
-    
     //ENTER KEYS
-  public static final String NOMBRE = "nombre";
-  public static final String PASS = "pass";
-  public static final String EDAD = "edad";
+    public static final String NOMBRE = "nombre";
+    public static final String PASS = "pass";
+    public static final String EDAD = "edad";
 
     //FINAL KEYS
-    
-     public Empleado() {
+    public Empleado() {
     }
 
+    public Empleado(String nombre, String pass, Long edad) {
 
-    public Empleado( String nombre, String pass, Long edad) {
- 
         this.nombre = nombre;
         this.pass = pass;
         this.edad = edad;
-     
+
     }
 
-    
     public Long getId() {
         return id;
     }
@@ -69,9 +67,4 @@ public class Empleado {
         this.edad = edad;
     }
 
-
-
-    
-    
-    
 }

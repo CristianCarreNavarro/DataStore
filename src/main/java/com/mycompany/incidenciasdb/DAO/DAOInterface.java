@@ -6,6 +6,7 @@
 package com.mycompany.incidenciasdb.DAO;
 
 
+import com.google.cloud.datastore.Key;
 import java.util.List;
 import com.mycompany.incidenciasdb.model.Empleado;
 import com.mycompany.incidenciasdb.model.Evento;
@@ -17,19 +18,22 @@ public  interface DAOInterface {
 
 
     // Método para insertar un nuevo empleado.
-    public Long insertEmpleado(Empleado e);
+    public void insertEmpleado(Empleado e);
 
     // Método para validar el login de un empleado.
     public boolean loginEmpleado(String user, String pass);
 
-    // Método para modificar el perfil de un empleado.
-    public void updateEmpleado(Empleado e,Long campo1,String campo2);
+    // Método para modificar la edad de un empleado.
+    public void updateEdad(Empleado e, int newAge);
+    
+    // Método para modificar el password de un empleado.
+    public void updatePassword(Empleado e, String newPwd);
 
     // Método para eliminar un empleado.
      public boolean removeEmpleado(Empleado e);
 
     // Obtener una Incidencia a partir de su Id.
-    public Incidencia getIncidenciaById(int id);
+    public Incidencia getIncidenciaById(Long id);
 
     // Obtener una lista de todas las incidencias
     public List<Incidencia> selectAllIncidencias();
